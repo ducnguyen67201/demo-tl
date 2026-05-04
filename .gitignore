@@ -1,0 +1,22 @@
+node_modules
+**/.next
+**/.turbo
+**/dist
+**/coverage
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+*.log
+*.pem
+.DS_Store
+
+# Prisma generated artifacts
+packages/database/src/generated/
+packages/types/src/prisma-generated/client.ts
+.gstack/
+.gstack-plans/
+
+# graphify knowledge graph — commit the report + graph, skip the noisy cache and machine-local scratch
+graphify-out/cache/
+graphify-out/.graphify_*
