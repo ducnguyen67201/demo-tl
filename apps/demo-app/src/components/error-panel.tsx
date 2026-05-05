@@ -38,9 +38,9 @@ export function ErrorPanel() {
     addToast("console", "console.warn() fired");
   }
 
-  function fetchNotFound() {
-    fetch("/api/does-not-exist").catch(() => {});
-    addToast("network", "GET /api/does-not-exist → 404");
+  function loadAccountStatus() {
+    fetch("/api/account/status").catch(() => {});
+    addToast("network", "Account status failed to load");
   }
 
   function fetchUnreachable() {
@@ -72,8 +72,8 @@ export function ErrorPanel() {
           </button>
         </div>
         <div className="btn-row">
-          <button type="button" className="btn-danger" onClick={fetchNotFound}>
-            Fetch 404
+          <button type="button" className="btn-danger" onClick={loadAccountStatus}>
+            Load Account Status
           </button>
         </div>
         <div className="btn-row">

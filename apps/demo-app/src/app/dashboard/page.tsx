@@ -6,8 +6,8 @@ import { useCallback, useState } from "react";
 export default function DashboardPage() {
   const [flash, setFlash] = useState(false);
 
-  const fetchData = useCallback(() => {
-    fetch("/api/data").catch(() => {});
+  const loadAccountStatus = useCallback(() => {
+    fetch("/api/account/status").catch(() => {});
     setFlash(true);
     setTimeout(() => setFlash(false), 1500);
   }, []);
@@ -24,8 +24,8 @@ export default function DashboardPage() {
         <h2>Dashboard Actions</h2>
         <div className="btn-grid">
           <div className="btn-row">
-            <button type="button" className="btn-danger" onClick={fetchData}>
-              Load Data (triggers 404)
+            <button type="button" className="btn-danger" onClick={loadAccountStatus}>
+              Load Account Status
             </button>
             {flash && <span className="flash">Triggered!</span>}
           </div>
