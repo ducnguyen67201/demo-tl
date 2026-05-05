@@ -43,6 +43,11 @@ export function ErrorPanel() {
     addToast("network", "GET localhost:9999 → connection refused");
   }
 
+  function fetchIntentional404() {
+    fetch("/api/does-not-exist").catch(() => {});
+    addToast("network", "GET /api/does-not-exist → intentional 404");
+  }
+
   return (
     <div className="card">
       <h2>Error Simulation</h2>
@@ -69,6 +74,11 @@ export function ErrorPanel() {
         <div className="btn-row">
           <button type="button" className="btn-danger" onClick={fetchUnreachable}>
             Fetch Unreachable Host
+          </button>
+        </div>
+        <div className="btn-row">
+          <button type="button" className="btn-danger" onClick={fetchIntentional404}>
+            Fetch Intentional 404
           </button>
         </div>
       </div>
