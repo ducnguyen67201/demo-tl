@@ -16,8 +16,7 @@ export default function DashboardPage() {
     <>
       <h1>Dashboard</h1>
       <p className="text-muted" style={{ marginBottom: "1rem" }}>
-        This page exists to test route change capture. Navigating here from Home generates a ROUTE
-        event.
+        Review customer account details and billing state.
       </p>
 
       <div className="card">
@@ -27,7 +26,7 @@ export default function DashboardPage() {
             <button type="button" className="btn-danger" onClick={loadAccountStatus}>
               Load Account Status
             </button>
-            {flash && <span className="flash">Triggered!</span>}
+            {flash && <span className="flash">Account status failed to load</span>}
           </div>
         </div>
       </div>
