@@ -10,7 +10,7 @@ export function initSDK(): void {
   if (initialized || typeof window === "undefined") return;
 
   if (!API_KEY) {
-    console.warn("[demo-app] NEXT_PUBLIC_TRUSTLOOP_API_KEY is not set. SDK will not send data.");
+    console.warn("[nimbus] NEXT_PUBLIC_TRUSTLOOP_API_KEY is not set. SDK will not send data.");
     return;
   }
 

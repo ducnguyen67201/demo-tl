@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata = {
-  title: "TrustLoop AI Demo App",
-  description: "Test harness for @trustloop/sdk session replay",
+  title: "Nimbus Billing",
+  description: "Account, billing, and renewal management for your team.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
