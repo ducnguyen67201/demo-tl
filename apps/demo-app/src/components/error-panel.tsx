@@ -22,20 +22,28 @@ export function ErrorPanel() {
   }, []);
 
   function throwUncaughtError() {
-    addToast("exception", "Uncaught Error: Demo exception thrown");
+    addToast("exception", "Account ledger failed to render");
     // Use window.onerror path instead of throw to avoid Next.js dev overlay
-    const err = new Error("Demo: uncaught exception from error panel");
+    const err = new Error(
+      "Cannot read properties of undefined (reading 'balance') in account ledger"
+    );
     window.dispatchEvent(new ErrorEvent("error", { error: err, message: err.message }));
   }
 
   function triggerConsoleError() {
-    console.error("Demo: intentional console error", { code: "E_DEMO", ts: Date.now() });
-    addToast("console", "console.error() fired");
+    console.error("Failed to load invoice projection", {
+      code: "E_INVOICE_PROJECTION",
+      ts: Date.now(),
+    });
+    addToast("console", "Invoice projection failed");
   }
 
   function triggerConsoleWarn() {
-    console.warn("Demo: intentional console warning", { code: "W_DEMO", ts: Date.now() });
-    addToast("console", "console.warn() fired");
+    console.warn("Stale plan cache, falling back to network", {
+      code: "W_STALE_CACHE",
+      ts: Date.now(),
+    });
+    addToast("console", "Plan cache stale");
   }
 
   function fetchUnreachable() {
@@ -45,30 +53,30 @@ export function ErrorPanel() {
 
   return (
     <div className="card">
-      <h2>Error Simulation</h2>
+      <h2>Diagnostics</h2>
       <p className="text-muted" style={{ marginBottom: "0.75rem" }}>
-        Each button triggers a different SDK event type. Check the browser console for [TrustLoop]
-        debug logs.
+        Surface a known failure mode for support handoff. Each action reproduces a real customer
+        report — exception, console error, console warning, or unreachable network call.
       </p>
       <div className="btn-grid">
         <div className="btn-row">
           <button type="button" className="btn-danger" onClick={throwUncaughtError}>
-            Throw Uncaught Error
+            Open account ledger
           </button>
         </div>
         <div className="btn-row">
           <button type="button" className="btn-danger" onClick={triggerConsoleError}>
-            Console Error
+            Reload invoices
           </button>
         </div>
         <div className="btn-row">
           <button type="button" className="btn-warning" onClick={triggerConsoleWarn}>
-            Console Warning
+            Refresh plan status
           </button>
         </div>
         <div className="btn-row">
           <button type="button" className="btn-danger" onClick={fetchUnreachable}>
-            Fetch Unreachable Host
+            Sync billing service
           </button>
         </div>
       </div>

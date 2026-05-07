@@ -18,10 +18,9 @@ export default function HomePage() {
 
   return (
     <>
-      <h1>TrustLoop AI Demo App</h1>
+      <h1>Nimbus Billing</h1>
       <p className="text-muted" style={{ marginBottom: "1rem" }}>
-        Simulates a customer app with the @trustloop/sdk installed. Triggers events that flow to the
-        TrustLoop AI ingest endpoint.
+        Account, billing, and renewal management for your team.
       </p>
 
       {user ? (
@@ -39,9 +38,9 @@ export default function HomePage() {
       <ErrorPanel />
 
       <div className="card">
-        <h2>Route Navigation</h2>
+        <h2>Workspace</h2>
         <p className="text-muted" style={{ marginBottom: "0.5rem" }}>
-          Navigate to test ROUTE event capture.
+          Open the dashboard to view active subscriptions and recent invoices.
         </p>
         <Link href="/dashboard">Go to Dashboard &rarr;</Link>
       </div>
