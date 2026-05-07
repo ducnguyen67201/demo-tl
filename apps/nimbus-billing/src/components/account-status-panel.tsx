@@ -1,13 +1,11 @@
-"use client";
-
-import { useCallback, useState } from "react";
+import React, { useState, useCallback } from 'react';
 
 interface AccountStatusResponse {
   plan: string;
   status: string;
   renewalDate: string;
   billing: {
-    priceCents: number;
+    priceCents?: number;
     currency: string;
   };
 }
@@ -23,7 +21,7 @@ export function AccountStatusPanel() {
         return;
       }
       const data = (await response.json()) as AccountStatusResponse;
-      const priceDollars = (data.billing.priceCents / 100).toFixed(2);
+      const priceDollars = data.billing.priceCents ? (data.billing.priceCents / 100).toFixed(2) : 'N/A';
       const renewalLabel = new Date(data.renewalDate).toLocaleDateString();
       setMessage(
         `Plan: ${data.plan} (${data.status}) — $${priceDollars} ${data.billing.currency}/mo — renews ${renewalLabel}`
@@ -31,23 +29,13 @@ export function AccountStatusPanel() {
     } catch (error) {
       console.error("Failed to load account status", error);
       setMessage(error instanceof Error ? error.message : "Account status failed to load");
-    } finally {
-      setTimeout(() => setMessage(null), 3000);
     }
   }, []);
 
   return (
     <div className="card">
-      <h2>Account Status</h2>
-      <p className="text-muted" style={{ marginBottom: "0.75rem" }}>
-        Load the customer's current plan and renewal details.
-      </p>
-      <div className="btn-row">
-        <button type="button" className="btn-danger" onClick={loadAccountStatus}>
-          Load Account Status
-        </button>
-        {message && <span className="flash">{message}</span>}
-      </div>
+      <button onClick={loadAccountStatus}>Load Account Status</button>
+      {message && <p>{message}</p>}
     </div>
   );
 }
