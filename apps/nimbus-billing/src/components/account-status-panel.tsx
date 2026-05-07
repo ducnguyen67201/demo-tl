@@ -1,13 +1,11 @@
-"use client";
-
-import { useCallback, useState } from "react";
+import React, { useState, useCallback } from 'react';
 
 interface AccountStatusResponse {
   plan: string;
   status: string;
   renewalDate: string;
-  billing: {
-    priceCents: number;
+  billing?: {
+    priceCents?: number;
     currency: string;
   };
 }
@@ -23,16 +21,18 @@ export function AccountStatusPanel() {
         return;
       }
       const data = (await response.json()) as AccountStatusResponse;
-      const priceDollars = (data.billing.priceCents / 100).toFixed(2);
-      const renewalLabel = new Date(data.renewalDate).toLocaleDateString();
-      setMessage(
-        `Plan: ${data.plan} (${data.status}) — $${priceDollars} ${data.billing.currency}/mo — renews ${renewalLabel}`
-      );
+      if (data.billing && typeof data.billing.priceCents === 'number') {
+        const priceDollars = (data.billing.priceCents / 100).toFixed(2);
+        const renewalLabel = new Date(data.renewalDate).toLocaleDateString();
+        setMessage(
+          `Plan: ${data.plan} (${data.status}) — $${priceDollars} ${data.billing.currency}/mo — renews ${renewalLabel}`
+        );
+      } else {
+        setMessage('Billing information is incomplete.');
+      }
     } catch (error) {
       console.error("Failed to load account status", error);
       setMessage(error instanceof Error ? error.message : "Account status failed to load");
-    } finally {
-      setTimeout(() => setMessage(null), 3000);
     }
   }, []);
 
