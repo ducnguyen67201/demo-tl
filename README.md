@@ -4,7 +4,7 @@ Standalone demo/test harness for the TrustLoop browser SDK.
 
 ## What is included
 
-- `apps/demo-app`: Next.js demo customer app
+- `apps/nimbus-billing`: Next.js Nimbus Billing app (the customer-facing surface used as the demo product)
 - `packages/sdk-browser`: local `@trustloop/sdk` package used by the demo
 
 ## Setup

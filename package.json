@@ -12,11 +12,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm --workspace @trustloop/sdk run dev & npm --workspace @trustloop/demo-app run dev",
-    "dev:app": "npm --workspace @trustloop/demo-app run dev",
+    "dev": "npm --workspace @trustloop/sdk run dev & npm --workspace @trustloop/nimbus-billing run dev",
+    "dev:app": "npm --workspace @trustloop/nimbus-billing run dev",
     "dev:sdk": "npm --workspace @trustloop/sdk run dev",
-    "build": "npm --workspace @trustloop/sdk run build && npm --workspace @trustloop/demo-app run build",
-    "start": "npm --workspace @trustloop/demo-app run start",
+    "build": "npm --workspace @trustloop/sdk run build && npm --workspace @trustloop/nimbus-billing run build",
+    "start": "npm --workspace @trustloop/nimbus-billing run start",
     "type-check": "npm run type-check --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
