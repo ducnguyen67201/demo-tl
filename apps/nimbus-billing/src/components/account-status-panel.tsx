@@ -10,6 +10,7 @@ interface AccountStatusResponse {
     priceCents: number;
     currency: string;
   };
+  balance: number; // Added balance field
 }
 
 export function AccountStatusPanel() {
